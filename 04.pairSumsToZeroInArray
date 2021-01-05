@@ -1,0 +1,68 @@
+//[-3,-2,-1,0,1,2,3,4,5] -> [-3,3] //FIRST PAIR
+
+//[-2,1,0] -> "undefined" as no pair
+
+function sumZeros(sortedArr) {
+    //Use two pointer
+    let pointer1 = sortedArr[0];
+    let pointer2 = sortedArr[0];
+    let sumArr = [];
+    
+    //Move the second pointer until you find sum as 0
+    for(let i=0; i<sortedArr.length ; i++) {
+        pointer1 = sortedArr[i];
+        for(let i=0; i < sortedArr.length; i++) {
+            pointer2 = sortedArr[i];
+            if((pointer1 + pointer2) === 0 ) {
+               sumArr.push(pointer1);
+               sumArr.push(pointer2);
+               return sumArr
+            } 
+        }
+    }
+
+
+    
+    //If sum = 0 present output it in an array
+
+    //If sum !== 0 then change 1st pointer to +1 index
+
+    //If no sum -> Then return undefined 
+}
+
+// sumZeros([-3,-2,1,4])
+
+
+//THE ABOVE SOLUTION IS NOT IDEAL
+
+function sumZerosPointer(arr) {
+    //Take two pointer
+    //FIrst pointer to 0th index
+    let pointer1 = arr[0];
+    //secon pointer to last index
+    let pointer2 = arr[arr.length - 1];
+    let arrSumZero = [];
+
+    for(let i=0; i<arr.length; i++) {
+        console.log('Here', pointer1, pointer2);
+        if(pointer2 + pointer1 === 0) {
+               arrSumZero.push(pointer1);
+               arrSumZero.push(pointer2);
+               return arrSumZero;
+        } else if(pointer2 + pointer1 > 0 ) {
+            pointer2 = arr[arr.length - 1 - i];
+        } else if(pointer2 + pointer1 < 0) {
+            pointer1 =  arr[i];
+        }
+    }
+
+    //Check for the difference 
+    //If Diff is +ve -> Move Last counter to -1 index
+
+    //If diff is -ve -> move first counter to +1 index
+}
+
+
+sumZerosPointer([-4,-3,-2,1,0,5,10])
+
+//[-4,-3,-2,1,2,5]

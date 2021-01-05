@@ -1,0 +1,46 @@
+//CHECK WHETHER THE CHARACTERS IN FIRST STRING FORM A SUBSEQUENCE OF CHARACTERS IN SECOND STRING.
+
+//"HELLO" "HELLO WORLD" -> TRUE
+//"ABC" "ACB" -> fALSE AS ORDER MATTERS
+//"SING" "STING" -> TRUE
+
+
+function isSubsequent(str1 , str2) {
+    //take two pointer
+    //place one pointer at 1st position of 1st string and second pointer at first position og secon string
+
+    //if i===j -> Do i++ , j++
+    //if i !=== j -> Do j++
+    //Loop till i === str1.length
+
+    let i = 0;
+    let j = 0;
+
+    while(j < str2.length) {
+        if(str1[i] === str2[j]) {
+            i++;
+            j++;
+            
+            if(i === str1.length) {
+                console.log('Yes');
+                return true;
+            }
+        }
+        if(str1[i] !== str2[j]) {
+            j++;
+        }
+        
+    }
+}
+
+isSubsequent("abc", "abc");
+
+
+
+//using recursion
+function isSubsequence(str1, str2) {
+  if(str1.length === 0) return true
+  if(str2.length === 0) return false
+  if(str2[0] === str1[0]) return isSubsequence(str1.slice(1), str2.slice(1))  
+  return isSubsequence(str1, str2.slice(1))
+}

@@ -1,0 +1,60 @@
+//Change value of node based on it's position
+
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class singlyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    push(val) {
+        let newNode = new Node(val);
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+        } else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+            this.length++;
+        }
+    }
+    
+    setNodeByPosition(position , newVal) {
+        let current = this.head;
+        let count = 0;
+        
+        if (position >= this.length || position < 0) {
+            console.log("Position not found in Linked List")
+            return "Out of bound"
+        };
+
+        while(current) {
+            if(count === position) {
+                current.val = newVal;
+                return current;
+            }
+            count++;
+            current = current.next;
+            
+        }
+    }
+
+}
+
+let list = new singlyLinkedList();
+list.push(20);
+list.push(30);
+list.push(40);
+list.push(50);
+
+
+console.log(list);

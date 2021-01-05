@@ -1,0 +1,57 @@
+//Maps
+
+var x = {}
+
+var a = {};
+
+x[a] = 'Hello';
+// console.log(x);
+
+var b = {newObj: 'New'}
+
+x[b] = 'New';
+console.log(x);
+
+//What should be the output?
+
+//Now we have only one key-value, the latest, this is becuase JS object only support one key object
+
+// var map = new Map();
+
+// map.set(a, 'aObj')
+// map.set(b, 'bObj');
+
+// for(var [key , value] of map.entries()) {
+//     console.log(key , value);
+// }
+
+
+//Weak Maps
+
+//Keys of WeakMaps are of the type Object only. Primitive data types as keys are not allowed
+
+// {
+//     let q = {
+//         a: [1,2]
+//     }
+
+//     var map = new Map();
+//     map.set(q, 'blockScope');
+// }
+
+// console.log(map);
+
+//We can now even access q outside our scope, this should be avoided
+
+
+{
+    let q = {
+        a: [1,2]
+    }
+
+    var weakMap = new WeakMap();
+    weakMap.set(q, 'blockScope');
+}
+
+// console.log(weakMap); //No entries now
+

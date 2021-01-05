@@ -1,0 +1,16 @@
+function fib(num) {
+    let arr=[1 , 1];
+    for(let i=1; i<=num - 2; i++) {
+         arr.push(arr[i] + arr[i-1]);
+    }
+    console.log(arr[num - 1]);
+    return arr[num - 1];
+}
+
+fib(10)
+
+//USING RECURSION
+function fib(n){
+    if (n <= 2) return 1;
+    return fib(n-1) + fib(n-2);
+}

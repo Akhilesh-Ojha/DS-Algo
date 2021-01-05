@@ -1,0 +1,40 @@
+//(1,2,3) //false
+//(1,2,2)//true
+//('a' , 'a') // true
+
+function areThereDuplicates(...args) {
+    let obj = {}
+    let arr = args;
+    let isDuplicate = false;
+    for (let el of arr) {
+        if(obj[el] > 0) {
+            obj[el]++
+        } else {
+            obj[el] = 1
+        }
+    }
+    
+    for(let keys in obj) { 
+        if(obj[keys] > 1) {
+            isDuplicate = true;
+        } 
+    }
+    console.log(isDuplicate);
+    return isDuplicate;
+}
+
+// areThereDuplicates(1,2,1);
+areThereDuplicates('1','2','2');
+
+
+//CAN BE DONE THROUGH MULTIPLE POINTERS
+
+//SORT ARRAY
+//1st pointer at 0th index
+//2nd Pointer at 1st Index
+//compare
+//IF OT EQUAL
+//i++;
+//j++
+
+

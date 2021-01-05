@@ -1,0 +1,84 @@
+class Node {
+    constructor(val){
+        this.val = val;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    constructor() {
+        this.tail = null;
+        this.head = null;
+        this.length = 0;
+    }
+
+    push(val) {
+        let newNode = new Node(val);
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail; 
+            this.tail = newNode;
+            this.length++;
+        }
+    }
+
+    insert(val , position) {
+   
+        if (position > this.length || position < 0) {
+            console.log("Position not found in Linked List");
+            return "Out of bound";
+        };
+        let current = this.head;
+        let count = 0;
+        let newNode = new Node(val);
+
+        if(position === 0) {
+            newNode.next = current;
+            this.head = newNode;
+            this.length++;
+
+            return "New node added"
+        } 
+        if(position === this.length) {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+            this.length++;
+
+            return "New node added"
+        }
+        
+        while(current) {
+            
+            if(position === count) {
+                let previousNode = current.prev;
+                previousNode.next = newNode;
+                newNode.prev = previousNode
+                newNode.next = current;
+                current.prev = newNode;
+                this.length++;
+
+                return "New Node added";
+            }
+            current = current.next;
+            count++;
+        }
+
+    }
+}
+
+let list = new DoublyLinkedList();
+
+list.push(20);
+list.push(30);
+list.push(40);
+
+console.log(list);
+
+// 10 20  30  
+// 0   1   2  position = 3, length = 3

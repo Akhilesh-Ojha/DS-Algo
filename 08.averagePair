@@ -1,0 +1,28 @@
+//Find average Pair
+
+//([1,2,3] , 2.5) //TRUE
+//([1,2,3,4] , 3) //TRUE
+//([1,2,3], 3.6) //FALSE
+
+
+function averagePair(arr , avg) {
+    let sum = avg * 2
+    var hashMap = {};
+    let isAvpPairPresent = false;
+
+    arr.forEach(el => {
+        temp = sum - el;
+        if(hashMap[temp] === 1) {
+           isAvpPairPresent = true
+        } else {
+            hashMap[el] = 1
+        }
+    });
+    console.log(hashMap , isAvpPairPresent)
+    return isAvpPairPresent;
+    
+}
+
+averagePair([1,2,3], 2.5)
+
+

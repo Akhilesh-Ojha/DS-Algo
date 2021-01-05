@@ -1,0 +1,59 @@
+//Frequesncy should match
+
+// [1,2,3] => [1,4,9] // True
+// [1,2,3] => [1,9] // False as no 4
+// [1,2,1] => [4,4,1] //false (must be same freq) //[4,1,1] or [1,4,4] or [1,4,1] ...
+
+
+function checkArray(arr1 , arr2) {
+    //Declare bool field
+    let isValid = true;
+    let obj1 = {};
+    let obj2 = {};
+
+    let squaredArray = []
+
+    //Loop first array , square that array
+    arr1.forEach(element => {
+        squaredArray.push(element * element);
+        if (obj1[element] > 0) {
+            obj1[element]++
+        } else {
+            obj1[element] = 1
+        }
+    })
+    
+     arr2.forEach(element => {
+        if (obj2[Math.sqrt(element)] > 0) {
+            obj2[Math.sqrt(element) ]++
+        } else {
+            obj2[Math.sqrt(element)] = 1
+        }
+    })
+
+
+// WE CANT USE JSON.STRINGIFY, we will have to compare keys and values - >CHECK ANAGRAM
+
+    if(JSON.stringify(obj1) === JSON.stringify(obj2)) {
+//          squaredArray.forEach(element => {                      //NO NEED FOR THISSSSS
+//             if (arr2.indexOf(element) === -1) {
+//                 isValid = false
+//             } else {
+                isValid = true
+//             }
+//         })
+    } else {
+        isValid = false
+    }
+
+    return isValid;
+
+    //verify if all square are present in 2nd array
+
+    //return bool
+}
+
+checkArray([1,2,3,2] , [9,4,4,1])
+
+
+//ANOTHER APPROACH WOULD HAVE BEEN TO REMOVE THE ELEMENT FROM SECOND ARRAY USING SPLICE IF SQUARE OF ELEMENT OF FIRST ARRAY IS PRESENT IN SECOND ARRAY

@@ -1,0 +1,42 @@
+//Accept two param , array and positive int.
+
+//SHoud return minimum lenght of sub array of which the sum is greater or equal to integer.
+
+//[2,3,1,2,4,3] , 7 -> op -> 2 because of [4,3]
+//[1,2,3,4,5], 4 - op -> 1 because 5>4
+//[1,2,3,4,5], 100 - op -> 0
+
+function minSubArrLenght(arr , num) {
+    arr.sort((a, b) => {return a - b});
+    console.log(arr);
+
+    let i = arr.length - 1;
+
+    let tempSum = 0;
+    tempSum = arr[i] + arr[i-1];
+    let count = 2;
+    
+    if(num < arr[i]) {
+        return 1;
+    }
+
+    let sum = arr.reduce((pv, cv) => pv + cv, 0);
+    if(sum < num) {
+        return 0;
+    }
+
+    for(let j=arr.length - 2; j >= 0; j--) {
+        if(tempSum >= num) {
+            console.log('c', count);
+            return count;
+        }
+        tempSum = tempSum + arr[j-1];
+        count++;   
+    }
+
+}
+
+
+
+minSubArrLenght([1,4,16,22,5,7,8,9,10] , 60);
+

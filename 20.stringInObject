@@ -1,0 +1,48 @@
+    
+function collectStrings(obj) { 
+    let newArr = [];    
+    let valueArray = Object.values(obj);
+    
+    function helper(obj) {
+        for (var key in obj) {
+            if(typeof(obj[key]) === 'object' ) {
+                return helper(obj[key]);
+            } else {
+                newArr.push(obj[key]);
+            }  
+        }
+        
+    }
+
+    helper(obj);
+    console.log('newArr', newArr);
+    return newArr;
+}
+
+collectStrings({
+    data: {
+        stuff: "foo",
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}) 
+// ["foo", "bar", "baz"])
+
+
+//     for(var key in obj) {
+//         if(typeof(obj[key]) === 'string') {
+//             newArr.push(obj[key])
+//         } else {
+//             newArr = newArr.concat(collectStrings(obj[key]));
+//         }
+//     }
+//     return newArr;
+// }

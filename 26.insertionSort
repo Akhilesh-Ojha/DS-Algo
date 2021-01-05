@@ -1,0 +1,26 @@
+function insertionSort(arr) {
+
+    for(let i=0; i<arr.length; i++) {
+        let startingIndex = i + 1;
+        if(startingIndex === arr.length) {
+            console.log(arr);
+            return arr;
+        }
+        for(let j=0; j < startingIndex; j++) {
+            if(arr[j] > arr[startingIndex]) {
+                swap(arr, j, startingIndex);
+            }   
+        }
+    }
+
+    function swap(arr , index1, index2) {
+        let temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
+    }
+
+    console.log(arr);
+    return arr;
+}
+
+insertionSort([2,1,4,3,7,6,5])

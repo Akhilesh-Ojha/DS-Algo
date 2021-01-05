@@ -1,0 +1,29 @@
+// function reverse(str) {
+//     let mystring = '';
+//     for (let i=str.length ; i > 0 ; i--) {
+//         var lastChar = str[str.length -1];
+//         mystring += lastChar;
+//         str = str.substring(0, str.length - 1);
+//     }
+//     console.log(mystring);
+// }
+
+
+
+function reverse(str) {
+    let mystring = '';
+    function helperReverse(str) {
+        console.log('str', str);
+        console.log('mystring', mystring);
+        if(str.length === 0) {
+            console.log('hey', mystring);
+            return mystring;
+        } 
+        let lastChar = str[str.length -1];
+        mystring += lastChar;
+        return helperReverse(str.substring(0, str.length - 1));
+    }
+    return helperReverse(str);  
+}
+
+reverse('rithmschool');

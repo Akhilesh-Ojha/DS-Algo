@@ -1,0 +1,82 @@
+//Adding a node at a given index
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class singlyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    push(val) {
+        let newNode = new Node(val);
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+        } else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+            this.length++;
+        }
+    }
+    
+    insertNode(position , val) {
+        let current = this.head;
+        let previousNode = this.head;
+        let count = 0;
+        
+        if (position > this.length + 1 || position < 0) {
+            console.log("Position not found in Linked List")
+            return "Out of bound"
+        };
+
+        //You can use exiting push functionality for add at last index
+        //You can use exiting unshift functionality for add at 0th index
+        
+        while(previousNode) {
+            if(count === position) {
+                let newNode = new Node(val);
+                if(position === 0) {
+                    newNode.next = current;
+                    this.head = newNode;
+                    this.length++;
+                    return `${newNode.val} added at index ${position}`;
+                } else if (position === this.length + 1) {
+                    previousNode.next = newNode;
+                    newNode.next = null;
+                    this.tail = newNode;
+                    this.length++;
+                    return `${newNode.val} added at index ${position}`;
+                } else {
+                    previousNode.next = newNode;
+                    newNode.next = current;   
+                    this.length++;
+                    return `${newNode.val} added at index ${position}`;
+                }
+               
+            }
+            count++;
+            previousNode = current;
+            if(current.next !== null) {
+                current = current.next;  
+            } 
+        }
+    }
+
+}
+
+let list = new singlyLinkedList();
+list.push(20);
+list.push(30);
+list.push(40);
+list.push(50);
+
+
+console.log(list);

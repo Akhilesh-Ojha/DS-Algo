@@ -1,0 +1,125 @@
+//Symbols is a primtive Data type in JS were all symbol values returned from a Symbol are unique
+
+let sym1 = Symbol('foo')
+let sym2 = Symbol('foo')
+console.log(sym1 === sym2); // false
+
+// A symbol value may be used as an identifier for object properties; this is the data type's primary purpose
+
+
+//Objects are not considered as iterables
+
+
+// But how to know which is iterables and which is not? 
+// We can use Symbol.iterator
+
+var arr = [1,2,3];
+
+console.log(arr); // Symbol.iterator is present in the proto
+
+var obj = {
+    name: 'Akhilesh',
+    age: 25
+}
+
+console.log(obj);
+
+//Symbol.iterators allows us to use a special loop called for - of
+
+for(var value of arr) {
+    console.log(value);
+}
+
+// for(var value of obj) { // Error
+// //     console.log(value);
+// }
+
+
+// For object looping we have to use for - in
+
+for(var keys in obj) {
+    console.log(keys); 
+ // one disadvantage is it will also print a key defined by a user in its prototype
+}
+
+
+var iterator = arr[Symbol.iterator]();
+
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+
+// Generator is a special kind of a function which gives value for iterators to be used
+// Functions that can return multiple values at different time interval, as per the user demands and can manage its internal state are generator functions
+// Instead of static array (arr) we can have dynamic array in generators
+
+// The yield keyword actually returns an IteratorResult object with two properties, value and done
+
+
+function *generator(){
+   yield 1,
+   yield 2,
+   yield 3,
+   yield 4
+}
+
+var iterator = generator();
+
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+//Generator metains the state when we call next
+
+//Generator for AJAX
+
+function login(email , password) {
+    return new Promise((resolve , reject) => {
+        setTimeout(() => {
+            console.log('Inside Promise');
+            resolve({userToken: "abc"}) 
+        }, 5000);
+    })  
+}
+
+function getUserDetails(userToken) {
+    return new Promise((resolve , reject) => {
+        setTimeout(() => {
+        console.log('Got Details');
+        resolve({name: "Akhilesh" , dob: "06/05/1995" }); 
+        }, 5000)
+    })    
+}
+
+function *newGenerator() {
+    var ut = yield login('Akhilesh', '1234');
+    var detail = yield getUserDetails(ut);
+
+    console.log('Details',detail);
+}
+
+var promiseIterator = newGenerator();
+
+promiseIterator.next();
+promiseIterator.next();
+
+// const customIterable = {
+//     [Symbol.iterator]() {
+//         let counter = 0;
+//         return {
+//             next() {
+//                 if (counter < 5) {
+//                 counter++;
+//                 return { done: false, value: counter };
+//                 } else {
+//                 return { done: true, value: undefined };
+//                 }
+//             }
+//         }
+//     }
+// }
+

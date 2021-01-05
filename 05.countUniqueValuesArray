@@ -1,0 +1,77 @@
+//Count unique values in a sorted array 
+
+//[1,2,3,4,4,5,5,5] -> Out put- 5
+
+//[] -> Output - 0
+
+//[1,1,2] => Output 2
+
+//USe multiple Pointer
+
+function countUniqueValue(arr) {
+//     Make an object
+//     Add new number in object
+//     If Number already present imcrement the value
+//     Check Key Length
+
+    let obj = {};
+    let count = 0;
+
+    arr.forEach(el => {
+        if(obj[el] > 0) {
+            obj[el]++
+        } else {
+            obj[el] = 1
+        }
+    });
+
+    console.log(obj);
+    for(let keys in obj) {
+        console.log(keys);
+        count++
+    }
+
+    console.log('count', count) ;
+    return count;
+
+}
+
+// countUniqueValue([1,2,3,3]);
+
+
+
+//using two pointer
+
+function countUniqueValuePointer(arr) {
+    //Make two pointer
+
+    //Array should be sorted
+
+    //First in 0th index
+
+    //Second in 1st index
+
+    //Comp first and second
+
+    //If same increase index of second and compare again
+
+    //If different , increase index of first and put value of j in ith index.
+
+    //Finally return I's index
+    if(arr.length === 0) return 0;
+
+    let i = 0;
+    
+    for(let j = 1 ; j < arr.length; j++) {
+        console.log('B', i , j);
+        if(arr[i] !== arr[j]) {
+            i++;
+            arr[i] === arr[j]
+        }  
+    }
+
+    console.log(i + 1); //As I is index
+
+}
+
+countUniqueValuePointer([1,2,2,4,5])

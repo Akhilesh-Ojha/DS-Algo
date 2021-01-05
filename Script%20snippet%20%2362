@@ -1,0 +1,21 @@
+let time = '07:05:45PM';
+
+let hoursinMi = time[0] + time[1];
+console.log(hoursinMi);
+let min = time.substring(3 , 5);
+console.log(min);
+let sec = time.substring(6 , 8)
+console.log(sec);
+let milTime;
+if(time.includes('AM') && +hoursinMi !== 12) {
+    milTime = hoursinMi + ':' + min + ':' + sec
+} else if ((time.includes('AM') && +hoursinMi === 12)) {
+    milTime = '00:' + min + ':' + sec;
+} else if ((time.includes('PM') && +hoursinMi === 12)) {
+    milTime = '12:' + min + ':' + sec;
+}else {
+    milTime = +hoursinMi+12 + ':' + min + ':' + sec
+}
+
+console.log(milTime);
+

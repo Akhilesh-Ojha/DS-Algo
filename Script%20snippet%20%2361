@@ -1,0 +1,23 @@
+function sayName(name) {
+    var text = 'Hello ' + name;
+    console.log(text);
+}
+
+// sayName('Akhil')
+
+//Now instaed of this I want to return a function which logs my name
+
+function sayName(name) {
+    var text = 'Hello ' + name;
+
+    return function() {
+        console.log(text);
+    }
+    
+}
+
+sayName('Akhil')();
+//  OR
+
+var sayAkhil = sayName('Akhil');
+sayAkhil();

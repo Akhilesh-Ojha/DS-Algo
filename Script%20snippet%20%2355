@@ -1,0 +1,214 @@
+// console.log('Start');
+
+// function callMe() {
+//     console.log('Inside function');
+// }
+
+// callMe();
+// console.log('End');
+
+// This is synchronous operation i.e we do all process one by one. 
+// But suppose we have an Ajax call which takes time to implement the function, we need to move ahead and 
+// wait for the entire function to get executed. That is we will have to make that function asynchronous
+
+
+
+
+
+
+
+
+
+//First - CALLBACK
+
+// console.log('start');
+
+// setTimeout(() => {
+//     console.log('We are in time out')
+// }, 2000);
+
+// console.log('end');
+
+//setTimeout is added to WEB APIs and not on callStack, once all synchronous process are done then setTimeout function is added to callStack
+//*******Call backs are always not neccesarily ASYNC, for example forEach, which takes a callBack function but runs synchronously
+
+// -------------
+
+// console.log('start');
+
+// function login(email , password) {
+//     setTimeout(() => {
+//         console.log('Got token')
+//         return ({userToke: "abc"})
+//     }, 5000)
+// }
+
+// const token = login("akhil@gmail.com" , 12345);
+
+// console.log(token);
+
+// console.log('Finish');
+
+// -----------------
+
+//Here we see that we don't get the value of token present in line 44. This is because we call the function login, but we move ahead. 
+//Now how will we get the data. 
+
+//We will have to use callBack
+//Callback functions are functions that's passed in as a parameter which runs in a later time
+
+// ------------
+
+// console.log('start');
+
+// function login(email , password , callBack) {
+//     setTimeout(() => {
+//         console.log('Got token')
+//         //Instead of returning we will add callBack
+
+//         //return ({userToke: "abc"})
+//         callBack({userToken: "abc"}) // this user token is passed as a parameter and the function through which it is called will have access to usertoken
+//     }, 5000)
+// }
+
+// function getUserDetails(userToken , callBack) {
+//     setTimeout(() => {
+//         console.log('Got Details');
+//         callBack({name: "Akhilesh" , dob: "06/05/1995" }); 
+//     }, 5000)
+// }
+
+// var tokenn = login("akhil@gmail.com" , 12345 , (userTokenFromCallBack) => {
+//     console.log('Here is the userToken');
+//     console.log(userTokenFromCallBack);
+//     getUserDetails(userTokenFromCallBack.userToken , (detailsFromCb) => {
+//         console.log("Here are the details");
+//         console.log(detailsFromCb);
+//     })
+// });
+
+// console.log(token);
+
+// console.log('Finish');
+
+// --------------------
+
+//Why is callBack wrong
+//CHances of call back hell and difficult to read. 
+//What is there is error, then we need another callBack for errors
+
+
+
+
+
+
+
+
+
+
+
+// We can use Promises Instead
+//PROMIS IS AN OBJECT WHOCH GIVES EITHER A RESULT OF AN ASYNC OPERATION OR FAILURE OF ASYNC OPERATION
+
+console.log('start');
+
+var promisee = new Promise((resolve , reject) => {
+    setTimeout(() => {
+        resolve({userToken: "123"})
+    }, 2000);
+});
+
+promise.then(token => {
+    console.log(token);
+}, console.log('err'))
+
+promise.then(token => {
+    console.log(token);
+}).catch(console.log('errrr'));
+
+console.log('end');
+
+
+
+// console.log('start');
+
+// function login(email , password) {
+//     return new Promise((resolve , reject) => {
+//         setTimeout(() => {
+//         console.log('Got token')
+//         resolve({userToken: "abc"}) 
+//     }, 5000)
+//     })  
+// }
+
+// function getUserDetails(userToken) {
+//     return new Promise((resolve , reject) => {
+//         setTimeout(() => {
+//         console.log('Got Details');
+//         resolve({name: "Akhilesh" , dob: "06/05/1995" }); 
+//         }, 5000)
+//     })
+    
+// }
+
+
+// login("akhil@gmail.com" , 12345)
+// .then(token => { return getUserDetails(token.userToken)})
+// .then(details => { console.log('MyDetails' , details) });
+
+// console.log('Finish');
+
+
+
+
+
+
+
+
+
+//Everbetter appraoch, Async await
+
+
+// console.log('start');
+
+// function login(email , password) {
+//     return new Promise((resolve , reject) => {
+//         setTimeout(() => {
+//         console.log('Got token')
+//         resolve({userToken: "abc"}) 
+//     }, 5000)
+//     })  
+// }
+
+// function getUserDetails(userToken) {
+//     return new Promise((resolve , reject) => {
+//         setTimeout(() => {
+//         console.log('Got Details');
+//         resolve({name: "Akhilesh" , dob: "06/05/1995" }); 
+//         }, 5000)
+//     })
+    
+// }
+
+// async function getFUllDetails() {
+//     const lt = await login("akhil@gmail.com", 12345);
+//     const getD = await getUserDetails(lt.userToken);
+//     console.log('token , Full', lt.userToken , getD);
+// }
+
+// getFUllDetails();
+
+// console.log('Finish');
+
+
+
+
+
+
+
+// (function () {
+//     console.log(1);
+//     setTimeout(function() {console.log(2), 1000})
+//     setTimeout(function() {console.log(3), 0})
+//     console.log(4);
+// })()

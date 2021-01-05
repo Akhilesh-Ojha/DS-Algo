@@ -1,0 +1,36 @@
+// naiveSearch(wowwomgasomgaobmg,omg); //OP - 2;
+// naiveSearch(wowwomgasomga,abc); //OP - 0;
+
+//to find substring inside a string
+
+
+function naiveSearch(str1 , str2) {
+    if (str2.length > str1.length) return 0;
+    let obj = {};
+    let newStr = "";
+    count = 0;
+
+    for(let i=0; i < str1.length ; i++ ) {
+       newStr += str1[i];
+       if(i === str2.length - 1 + count) {
+           if(obj[newStr] > 0) {
+               obj[newStr]++
+           } else {
+               obj[newStr] = 1;
+           }
+           i = count;
+           count++;
+           newStr = "";
+       }  
+    }
+    
+    if(obj[str2]) {
+        return obj[str2];
+    } else {
+        return 0
+    }
+    
+}
+
+
+naiveSearch("deepika ojha urf deep" , "deep");

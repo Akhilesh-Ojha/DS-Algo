@@ -1,0 +1,79 @@
+//Adding a node at a given index
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class singlyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    push(val) {
+        let newNode = new Node(val);
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+        } else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+            this.length++;
+        }
+    }
+    
+    removeNode(position) {
+        let current = this.head;
+        let previousNode = this.head;
+        let count = 0;
+        
+        if (position >= this.length || position < 0) {
+            console.log("Position not found in Linked List")
+            return "Out of bound"
+        };
+
+        console.log(position);
+        console.log(this.length);
+
+        //You can use exiting pop functionality to remove from last index
+        //You can use exiting shift functionality to remove from 0th index
+        
+        while(current) {
+            if(count === position) {
+                if(position === 0) {
+                    this.head = this.head.next;
+                    this.length--;
+                    return `${current.val} removed from index ${position}`;
+                } else if (position === this.length - 1) {
+                    previousNode.next = null;
+                    this.tail = previousNode;
+                    this.length--;
+                    return `${current.val} removed from index ${position}`;
+                } else {
+                    previousNode.next = current.next;
+                    this.length--;
+                    return `${current.val} removed from index ${position}`;
+                }
+               
+            }
+            count++;
+            previousNode = current;
+            current = current.next;   
+        }
+    }
+
+}
+
+let list = new singlyLinkedList();
+list.push(20); 
+list.push(30); 
+list.push(40);
+list.push(50);
+
+
+console.log(list);

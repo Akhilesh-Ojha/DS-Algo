@@ -1,0 +1,60 @@
+//Bubble Sort 
+
+//IS QUICK WHEN WE HAVE AN AMLOST SORTED ARRAY
+//compares first two element and then next two and so on
+//So in the first iteration we sort the largest number to the end.
+
+
+//This is a naive solution as we are comparing the last numbers even though we know that after the first iteration they are sorted.
+//So after 1st iteration we should loop to last index - 1 (as last index is already the greatest)
+
+// function bubbleSort(arr) {
+//     for(let i = 0; i < arr.length - 1; i++) {
+//         for(let j=0; j < arr.length -1 ; j++ ) {
+//             console.log(arr , arr[j], arr[j+1])
+//             if(arr[j] > arr[j+1]) {
+//                 swap(arr , j , j+1);
+//             }
+//         }
+//     }
+
+//     function swap(arr , index1, index2) {
+//         let temp = arr[index1];
+//         arr[index1] = arr[index2];
+//         arr[index2] = temp;
+//     }
+//     console.log(arr);
+//     return arr;
+// }
+
+
+// A better solution 
+
+function bubbleSort(arr) {
+    let noSwaps;
+    for(let i = arr.length; i > 0 ; i--) {
+        noSwaps = true;
+        for(let j=0; j < i - 1 ; j++ ) {
+            console.log(arr , arr[j], arr[j+1])
+            if(arr[j] > arr[j+1]) {
+                swap(arr , j , j+1);
+            }
+        }
+        if(noSwaps) break;
+    }
+
+    function swap(arr , index1, index2) {
+        let temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
+        noSwaps = false;
+    }
+    console.log(arr);
+    return arr;
+}
+
+//NOW suppose we have an almost sorted array. [1,2,3,5,4]. Even now it will run for every iteration even though we see that only one swap is needed.
+//For rest iteration we don't need any swap. So we will add a check , if  no swap is made for any iteratin.  We will know it is already sorted.
+
+
+bubbleSort([1,2,3,5,4]);

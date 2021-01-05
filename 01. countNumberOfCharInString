@@ -1,0 +1,46 @@
+//countChar("aaaa") -> {a:4}.
+
+//What if invalid input? countChar(12345)
+
+//What if numbers are present? ? countChar("Hi 123") ?
+
+//What about letter casing? countChar(Hi hello) ? What about h or H?
+
+
+//Doing for case insensitive h and H are same and using alpha numerics
+
+function charCount(str1) {
+    //Make Object to return at end
+    let obj = {};
+
+    //Loop over string for each char 
+        let str = str1.toLowerCase();
+
+        for (let i=0; i< str.length ; i ++) {
+            //You can use for - of
+//             for(var char of str)
+            if(/[a-z0-9]/.test([str[i]])) {
+                if(!(str[i] in obj)) {
+                    obj[str[i]] = 1;
+                } else if (str[i] in obj) {
+    //                obj[str[i]] = obj[str[i]] + 1
+                      obj[str[i]]++;
+                }
+            }     
+        }
+
+        console.log('OBJ', obj);
+        return obj; 
+
+        //If char and number not present add in object with count 1
+        //If char and number present increment the count 
+        //If char is something else (" " , "special symbol") don't do anyhting
+
+    //Return object
+
+}
+
+charCount("Hi Hey h 12")
+
+
+

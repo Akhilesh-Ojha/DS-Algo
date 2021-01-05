@@ -1,0 +1,232 @@
+//SORT
+// let arr = [1,2,10,4,'a','d',3,'b'] 
+// arr.sort();
+// arr.sort((a,b) => {
+//     return a-b;
+// })
+// console.log(arr);
+
+//-------------------------------------
+
+// REDUCE
+let arr = [1,2,3,4,5]
+let obj = {};
+arr.reduce((acc , val, index) => {
+    return acc += val;
+}, 0)
+
+//---------------------------------------------
+
+//indexOf
+// var arrindex = [{'number': 1}, {'number': 2}]
+// console.log(arrindex.indexOf({'number': 1}))
+
+// var newarrIndex = [1,2,3,4,5]
+// console.log(newarrIndex.indexOf(1))
+
+//------------------------------------------------
+
+
+//findIndex
+// var persons = [{'name': 'Akhil'}, {'name': 'Deep'}]
+
+// persons.findIndex((person) => {
+//     return person.name === 'Akhil';
+// })
+
+
+//--------------------------------------------------
+
+
+//FILTER
+
+// let array = [1,2,1,20,14,30]
+// array.filter((numb) => {
+//     return numb < 20
+// })
+
+//-------------------------------------------------
+
+//SPLICE
+
+// var spliceArr = [1,2,3,4]
+// console.log(spliceArr.splice(3,1,10))
+// console.log(spliceArr);
+// splice -> Index from where to slice, elemets to slice, replace slice element with ?
+
+//-------------------------------------------------
+
+//SLICE
+
+// var sliceArr = [1,2,3,4]
+// var anotherArr = sliceArr.slice();
+// anotherArr[0] = 100;
+// console.log(sliceArr , anotherArr);
+
+// var sliceArr = [1,2,3,4]
+// var anotherArr = sliceArr;
+// anotherArr[0] = 100;
+// console.log(sliceArr , anotherArr);
+
+
+//-----------------------------------------------------
+
+
+//MAP
+
+// var arr = [1,2,3,4]
+// let mappedArr = arr.map((num) => {
+//      num = num + 100;
+//      console.log(num);
+//      return num
+// })
+// console.log(arr);
+// console.log(mappedArr);
+
+
+
+//---------------------------------------------------------------
+
+
+//FOREACH
+// var arr1 = [1,2,3,4,5]
+// var double = arr1.forEach(el => {
+//      el = el + 100;
+//      console.log(el);
+//      return el;
+// })
+// console.log('Here', arr1); 
+// console.log(double)// we get undefined
+
+//Map return an array with the result, where as forEach only gives result for one element at a time
+
+
+//-----------------------------------------------------------
+
+//SOME
+
+
+//Return a boolean field
+// var arr = [1,2,3,4]
+
+// arr.some((num) => {
+//     return num < 3  // True as some elements are less than 4
+// })
+// arr.some((num) => {
+//     return num >  4  //False as no element is greater than 4
+// })
+
+
+//---------------------------------------------------------
+
+//EVERY
+//Return a boolean field
+
+// var arr = [1,2,3,4]
+
+// arr.every(num => {
+//     return num <= 4 //True as ALL numbers are less than or equal to 4
+// })
+
+// arr.every(num => {
+//     return num > 4 //False, as NO elemts are greater than 4
+// })
+
+
+// -----------------------------------------------------
+
+//INCLUDES
+
+// var arr = [1,2,3,4]
+// var inludesTwo = arr.includes(10);
+// console.log(inludesTwo);
+//Better than find if you have simple data and need a simple check
+
+// var arr = [1,2,3,4]
+// arr.find((el) => {
+//     return el === 2;
+// })
+
+//-----------------------------------------------------------
+
+//Find
+
+// var arr = [{name: 'Akhil' , occupation: 'IT'}, {name: 'Deep', occupation: 'Core'}]
+// arr.find((person) => {
+//     if(person.name === 'Deep') {
+//         console.log(person.occupation);
+//         return person.occupation // return Core
+//     }
+// });
+
+// var arr = [{name: 'Deep' , occupation: 'IT'}, {name: 'Deep', occupation: 'Core'}]
+// arr.find((person) => {
+//     if(person.name === 'Deep') {
+//         console.log(person.occupation);
+//         return person.occupation // return IT , only one item, the first item it finds 
+//     }
+// }); 
+
+// //You can use reverse to find the last element
+// var arr = [{name: 'Deep' , occupation: 'IT'}, {name: 'Deep', occupation: 'Core'}]
+// arr.reverse().find((person) => {
+//     if(person.name === 'Deep') {
+//         console.log(person.occupation);
+//         return person.occupation // return Core 
+//     }
+// }); 
+
+
+//-------------------------------------------------------
+//Fill
+
+// var arr= [1,2,3,4]
+// arr.fill(5)
+// console.log(arr);
+
+// var arr= [1,2,3,4]
+// arr.fill({name: 'Akhil'})
+// console.log(arr); // Output all akhil object
+// arr[0].name = 'Deep';
+// console.log(arr); //Output all Deep object
+
+//This happens because we fill the aeeay with only one object, the rest are reference to that object.
+
+// So in order to make new object for all elements use map method
+
+
+//--------------------------------------------------------------
+
+//join
+
+// var arr = [1,2,3,4]
+
+// let newA = arr.join(' , ');
+// console.log(newA);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

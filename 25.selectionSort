@@ -1,0 +1,41 @@
+// Selection sort is similar to bubble sort but instead of first placing large values into sorted position
+// it first places the small value. 
+// We first keep the min value as 0th index and then swap if any number is less than the minValue.  Swap happens after the complete j iteration. In complete j iteration we find the minValue;
+
+
+//Better then bubble sort only in one condition. Here we do swap only once after each iteration, but in bubble sort we swap every two element
+//Some what memory effecient than bubble BUT NOT BETTER
+
+function selectionSort(arr) {
+    let minValue;
+    let minIndex;
+    let newMinIndex;
+
+    for(let i=0; i < arr.length; i++) {
+        minValue = arr[i];
+        minIndex = i;
+        newMinIndex = i;
+        for(let j=i ; j < arr.length; j++) {
+            if(minValue > arr[j + 1]){
+               minValue  = arr[j + 1];
+               newMinIndex = j+1;
+            } 
+        }
+
+        if(minIndex !== newMinIndex) {
+            swap(arr , minIndex , newMinIndex);
+        }    
+    }
+
+    function swap(arr , index1, index2) {
+        let temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
+    }
+
+    console.log(arr);
+    return arr;
+
+}
+
+selectionSort([2,3,1,4,6,5]);

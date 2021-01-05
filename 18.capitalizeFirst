@@ -1,0 +1,18 @@
+function capitalizeFirst(arr) {
+    let newArr = [];
+    function helperCapitalizeFirst(arr) {
+        if (arr.length === 0) return newArr;
+        let string = arr[0];
+        let capitalizeFirstLetter = string[0].toUpperCase();
+        newArr.push(capitalizeFirstLetter + string.substring(1,string.length));
+        return helperCapitalizeFirst(arr.splice(1));
+    }
+    helperCapitalizeFirst(arr);
+    console.log(newArr);
+    return newArr;  
+}
+
+
+
+
+capitalizeFirst(['abc' , 'def']);

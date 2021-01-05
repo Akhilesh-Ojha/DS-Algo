@@ -1,0 +1,76 @@
+class Node {
+    constructor(val){
+        this.val = val;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    constructor() {
+        this.tail = null;
+        this.head = null;
+        this.length = 0;
+    }
+
+    push(val) {
+        let newNode = new Node(val);
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail; 
+            this.tail = newNode;
+            this.length++;
+        }
+    }
+
+    remove(position) {
+        if (position >= this.length || position < 0) {
+            console.log("Position not found in Linked List");
+            return "Out of bound";
+        };
+        let current = this.head;
+        let end = this.tail;
+        let count = 0;
+
+        if(position === 0) {
+            this.head = current.next;
+            this.head.prev = null;
+            this.length--;
+            return "Node removed"
+        } 
+        if(position === this.length - 1) {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+            this.length--;
+            return "Node removed"
+        }
+        
+        while(current) {
+            
+            if(position === count) {
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+                this.length--;
+                return "Node removed";
+            }
+            current = current.next;
+            count++;
+        }
+
+    }
+}
+
+let list = new DoublyLinkedList();
+
+list.push(20);
+list.push(30);
+list.push(40);
+
+console.log(list);
+
+// 10 20  30  
+// 0   1   2  position = 3, length = 3

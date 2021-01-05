@@ -1,0 +1,170 @@
+// //ES 6 Proto
+
+// var framework = {
+//     type: 'React'
+// }
+
+// console.log(framework);
+
+// var library = {};
+
+// library.__proto__ = framework;
+
+// console.log(library.type);
+// console.log(framework.isPrototypeOf(library));
+
+// framework.type = 'Angular';
+
+// console.log(framework.type);
+// console.log(library.type);
+
+// library.type = 'Vue';
+
+// console.log(framework.type);
+// console.log(library.type);
+
+
+// ////ES 5
+
+// var library = Object.create(framework);
+// // it creates an object library & assigns framework as prototype to library object
+
+// var library = Object.create(framework , {canUse: {value: 'Hooks'}});
+
+//Now library will have a canUse property & a proto type of framework, which will have type property
+
+
+
+
+
+
+
+
+
+//Class -> blueprint to create objects
+
+//In JS we just immitate one object to another, //We use constructor pattern
+
+//Constructor is a function which is use to crate an instance of a class which is called an object
+
+//Gets called when we declare an object using new keyword
+
+
+
+
+//Constructor
+
+
+
+// function Car (color) {
+//     this.color = color;
+// }
+// let redCar = new Car('red');
+// console.log(redCar);
+
+//ALMOST Same as 
+
+// let redCar = {}
+// Car.call(redCar, 'red');
+
+
+
+//What if I don't use new keyword
+// We get undefined, as nothing is returned
+
+
+//How to create private properties?
+
+//We use clousure, insted of using this, we use seperate functions
+// function Car(color) {
+//     this.setColor = function(color) {
+//         _color = color
+//     }
+//     this.getColor = function() {
+//         return _color
+//     }
+// }
+//Now you can not directly access the color variable
+
+
+
+
+
+//But now how to make the method private?
+
+//How to add a member function inside function
+
+// function Carrr(color) {
+//     this.color = color;
+//     this.fullDetails = function() {
+//         return `This car is of ${color} color`
+//     }
+// }
+
+// var rC = new Carrr('red')
+// console.log(rC.fullDetails());
+
+// Another way is by adding function prototype
+
+
+// All the constructor/function has a property called prototype
+// This prototype point to an object, this object has a constructor & __proto__
+// If you create a method using prototype, it gets added in the __proto__
+// So __proto__ property of rC points to prototype  property of Carrr (function constructor)
+// So when we add a function in prototype of constructor function, we make it available to __proto__ of object
+
+// function Carrr(color) {
+//     this.color = color;
+//     this.fullDetails = function() {
+//         return `This car is of ${this.color} color`
+//     }
+// }
+
+// console.log('win', window);
+
+// Carrr.prototype.fullDetailsByPrototype = function() {
+//     return `This car is of ${this.color} color, but inside prototype`
+// }
+
+// // let protoCar = new Carrr('red');
+// // console.log(protoCar.fullDetailsByPrototype())
+// //Adding in prototype saves memory when you create instance of new Carrr
+
+// function BrandedCar(brand , color) {
+//    // this.color = color; // This is wrong, as we can get the value of color using Carrr function
+//     Carrr.call(this, color); // Calling base class function or super()
+//     this.brand = brand;
+// }
+
+
+// BrandedCar.prototype = Object.create(Carrr.prototype);
+
+// BrandedCar.prototype.fullDetailsByPrototypeForBrand = function() {
+//     return `This car is of brand: ${this.brand} & is of ${this.color} color, but inside prototype`
+// }
+
+// var bC = new BrandedCar('Merc', 'blue');
+// console.log(bC.fullDetailsByPrototypeForBrand());
+// console.log(bC.fullDetailsByPrototype()); //Error, becuase you have not inherited this portype function, to do so add line 138 BrandedCar.prototype = Object.create(Carrr.prototype);
+
+
+function Persons() {
+//     constructor() {
+        this.name = 'Akhil';
+//     }
+this.printName = function() {
+    console.log(this.name)
+}
+   
+}
+
+var person = new Persons()
+person.printName();
+// console.log(this.name);
+
+
+
+
+
+
+
